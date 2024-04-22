@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "818747017877",
+    "firebase_url": "https://exampleoffirebase-b6675.firebaseio.com",
+    "project_id": "exampleoffirebase-b6675",
+    "storage_bucket": "exampleoffirebase-b6675.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818747017877:android:3c0766043adf4afd77a99c",
+        "android_client_info": {
+          "package_name": "com.example.exampleoffirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818747017877-1a2lpv6r0plo7chc9s670qc22a7pb6mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHCEyX6wpCWGGR3e4_hYnKmR7j5tTVEKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818747017877-1a2lpv6r0plo7chc9s670qc22a7pb6mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818747017877:android:cff80c4b36e283d777a99c",
+        "android_client_info": {
+          "package_name": "com.example.firebaseexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818747017877-1a2lpv6r0plo7chc9s670qc22a7pb6mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHCEyX6wpCWGGR3e4_hYnKmR7j5tTVEKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818747017877-1a2lpv6r0plo7chc9s670qc22a7pb6mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818747017877:android:5936340cbeaa1da377a99c",
+        "android_client_info": {
+          "package_name": "com.mongodb.hellorealm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818747017877-1a2lpv6r0plo7chc9s670qc22a7pb6mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHCEyX6wpCWGGR3e4_hYnKmR7j5tTVEKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818747017877-1a2lpv6r0plo7chc9s670qc22a7pb6mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,24 @@
+<!-- res/drawable/ic_sort_by_name.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,2l-5,5h10z"/>
+
+    <!-- Label "Name" -->
+    <text
+        android:text="Name"
+        android:textSize="8sp"
+        android:textColor="#000021"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"/>
+</vector>

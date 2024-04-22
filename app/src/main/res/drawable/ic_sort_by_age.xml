@@ -1,0 +1,26 @@
+<!-- res/drawable/ic_sort_by_age.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M7,7h10l-5,5z"/>
+
+    <path
+        android:pathData="M0,0h24v24H0z"
+        android:fillColor="@android:color/transparent"/>
+
+    <text
+        android:text="Age"
+        android:textSize="8sp"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"/>
+</vector>
