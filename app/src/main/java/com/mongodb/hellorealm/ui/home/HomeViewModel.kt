@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
+import java.util.*
 
 
 class HomeViewModel : ViewModel() {
@@ -25,7 +26,7 @@ class HomeViewModel : ViewModel() {
 
     init {
         createSampleEntries()
-
+//        deleteAllDummyData()
         val config = RealmConfiguration.Builder()
             .schemaVersion(12)
             .migration(MyMigration())
@@ -46,55 +47,109 @@ class HomeViewModel : ViewModel() {
 
 
     private fun createSampleEntries() {
-
         db.executeTransactionAsync { realm ->
+//            val existingIds = mutableListOf<String>()
+//            val existingData = realm.where(DummyData::class.java).findAll()
+//            existingData.forEach { existingIds.add(it.id)
+//            }
             // Create a new instance of MyData
-            val dummy1 = DummyData().apply {
-                //id = 0
-                fullName = "Test Doe"
-                street = "John Doe Street"
-                houseNumber = 1
-                age = 10
-                zip = 12345
-                city = "Dun"
-            }
-            val dummy2 = DummyData().apply {
-               // id = 1
-                age = 20
-                fullName = "Jane Test"
-                street = "Jane Street"
-                houseNumber = 2
-                zip = 12345
-                city = "Majra"
-            }
+            val existingData = realm.where(DummyData::class.java).findAll()
 
-            val dummy3 = DummyData().apply {
+            if (existingData.isEmpty()) {
+                val dummy1 = DummyData().apply {
+                    //id = 0
+                    fullName = "Test Doe"
+                    street = "John Doe Street"
+                    houseNumber = 1
+
+                    age = 10
+                    zip = 12345
+                    city = "Dun"
+                }
+                val dummy2 = DummyData().apply {
+                    // id = 1
+                    age = 20
+                    fullName = "Jane Test"
+                    street = "Jane Street"
+                    houseNumber = 2
+                    zip = 12345
+                    city = "Majra"
+                }
+
+                val dummy3 = DummyData().apply {
 //                id = 2
-                age = 30
-                fullName = "Doe TEst"
-                street = "== Doe Street"
-                houseNumber = 3
-                zip = 12345
-                city = "Rajpur"
-            }
-            val dummy4 = DummyData().apply {
+                    age = 30
+                    fullName = "Doe TEst"
+                    street = "== Doe Street"
+                    houseNumber = 3
+                    zip = 12345
+                    city = "Rajpur"
+                }
+                val dummy4 = DummyData().apply {
 //                id = 3
-                age = 40
-                fullName = "JaneDoe"
-                street = "J Street"
-                houseNumber = 4
-                zip = 12345
-                city = "Raipur"
+                    age = 40
+                    fullName = "JaneDoe"
+                    street = "J Street"
+                    houseNumber = 4
+                    zip = 12345
+                    city = "Raipur"
+                }
+
+
+
+//            val dummy1 = createDummyData("Test Doe", "John Doe Street", 1, 10, 12345, "Dun", existingIds)
+//            val dummy2 = createDummyData("Jane Test", "Jane Street", 2, 20, 12345, "Majra", existingIds)
+//            val dummy3 = createDummyData("Doe TEst", "== Doe Street", 3, 30, 12345, "Rajpur", existingIds)
+//            val dummy4 = createDummyData("JaneDoe", "J Street", 4, 40, 12345, "Raipur", existingIds)
+
+
+                // Insert the data into the Realm database
+                realm.insertOrUpdate(dummy1)
+                realm.insertOrUpdate(dummy2)
+                realm.insertOrUpdate(dummy3)
+                realm.insertOrUpdate(dummy4)
             }
 
-            // Insert the data into the Realm database
-            realm.insertOrUpdate(dummy1)
-            realm.insertOrUpdate(dummy2)
-            realm.insertOrUpdate(dummy3)
-            realm.insertOrUpdate(dummy4)
+
+
 
         }
     }
+
+
+
+    fun deleteAllDummyData() {
+        val realm = Realm.getDefaultInstance()
+
+        realm.executeTransactionAsync { realm ->
+            realm.delete(DummyData::class.java)
+        }
+
+        realm.close()
+    }
+
+    private fun createDummyData(fullName: String, street: String, houseNumber: Int, age: Int, zip: Int, city: String, existingIds: List<String>): DummyData {
+        // Generate a new UUID
+        var newId = UUID.randomUUID().toString()
+
+        // Check if the generated ID already exists
+        while (existingIds.contains(newId)) {
+            // If it does, generate a new one until it's unique
+            newId = UUID.randomUUID().toString()
+        }
+
+        // Create the DummyData object with the unique ID
+        return DummyData().apply {
+            id = newId
+            this.fullName = fullName
+            this.street = street
+            this.houseNumber = houseNumber
+            this.age = age
+            this.zip = zip
+            this.city = city
+        }
+    }
+
 
 
     override fun onCleared() {

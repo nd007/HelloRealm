@@ -9,6 +9,7 @@ open class DummyData: RealmObject() {
 
     @PrimaryKey
     var id = UUID.randomUUID().toString()
+
     var fullName: String = ""
     var street: String = ""
     var houseNumber: Int = 0
