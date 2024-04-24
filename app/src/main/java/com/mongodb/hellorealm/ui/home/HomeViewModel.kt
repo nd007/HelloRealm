@@ -48,6 +48,19 @@ class HomeViewModel : ViewModel() {
 
     private fun createSampleEntries() {
         db.executeTransactionAsync { realm ->
+            val dummy1 = createDummyData("Test Doe", "John Doe Street", 1, 10, 12345, "Dun", realm)
+            val dummy2 = createDummyData("Jane Test", "Jane Street", 2, 20, 12345, "Majra", realm)
+            val dummy3 = createDummyData("Doe TEst", "== Doe Street", 3, 30, 12345, "Rajpur", realm)
+            val dummy4 = createDummyData("JaneDoe", "J Street", 4, 40, 12345, "Raipur", realm)
+
+            // Insert the data into the Realm database if they are not null
+            if (dummy1 != null) realm.insertOrUpdate(dummy1)
+            if (dummy2 != null) realm.insertOrUpdate(dummy2)
+            if (dummy3 != null) realm.insertOrUpdate(dummy3)
+            if (dummy4 != null) realm.insertOrUpdate(dummy4)
+        }
+
+        /*db.executeTransactionAsync { realm ->
 //            val existingIds = mutableListOf<String>()
 //            val existingData = realm.where(DummyData::class.java).findAll()
 //            existingData.forEach { existingIds.add(it.id)
@@ -113,7 +126,7 @@ class HomeViewModel : ViewModel() {
 
 
 
-        }
+        }*/
     }
 
 
@@ -128,15 +141,24 @@ class HomeViewModel : ViewModel() {
         realm.close()
     }
 
-    private fun createDummyData(fullName: String, street: String, houseNumber: Int, age: Int, zip: Int, city: String, existingIds: List<String>): DummyData {
-        // Generate a new UUID
-        var newId = UUID.randomUUID().toString()
+    private fun createDummyData(fullName: String, street: String, houseNumber: Int, age: Int, zip: Int, city: String, realm: Realm): DummyData? {
+        // Check if there's an existing entry with the same properties
+        val existingData = realm.where(DummyData::class.java)
+            .equalTo("fullName", fullName)
+            .equalTo("street", street)
+            .equalTo("houseNumber", houseNumber)
+            .equalTo("age", age)
+            .equalTo("zip", zip)
+            .equalTo("city", city)
+            .findFirst()
 
-        // Check if the generated ID already exists
-        while (existingIds.contains(newId)) {
-            // If it does, generate a new one until it's unique
-            newId = UUID.randomUUID().toString()
+        // If an existing entry is found, return null to indicate that no new object should be created
+        if (existingData != null) {
+            return null
         }
+
+        // If no existing entry is found, create a new UUID
+        val newId = UUID.randomUUID().toString()
 
         // Create the DummyData object with the unique ID
         return DummyData().apply {
